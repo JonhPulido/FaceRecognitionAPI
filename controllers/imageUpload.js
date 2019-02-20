@@ -21,7 +21,6 @@ const handleImageUpload = (req,res,db) => {
 
 const saveImage = (req, res, db) => {
   const {id, image_url} = req.body;
-  console.log(id)
   db.transaction(trx => {
     trx.insert({
       image_url ,

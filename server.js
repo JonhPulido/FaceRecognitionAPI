@@ -16,10 +16,11 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 const imageUpload = require('./controllers/imageUpload');
-const users= require('./controllers/users');
+const images = require('./controllers/images');
+const users = require('./controllers/users');
 const schema = require('./controllers/schema');
 
-const development = false;
+const development = true;
 
 const db = function(){
   if(!development){
@@ -51,6 +52,7 @@ app.use(cors({
 }));
 app.use('/graphql', graphqlHTTP({
   //Introduce a graphql schema here
+  graphiql : true,
   schema
 }))
 
@@ -62,7 +64,8 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
 app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
 app.put('/image', (req, res) => { image.handleImage(req, res, db)})
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
-app.get('/images', (req, res) => {users.getImages(req, res, db)})
+app.get('/images', (req, res) => {images.getImages(req, res, db)})
+app.get('/users', (req, res) => {users.getUsers(req, res, db)})
 app.post('/image-save', (req, res) => {imageUpload.saveImage(req, res, db)})
 app.post('/signin', signin.handleSignin(db, bcrypt))
 app.post('/image-upload', (req, res) => {imageUpload.handleImageUpload(req,res,db)})

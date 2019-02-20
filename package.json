@@ -20,6 +20,8 @@
     "express-graphql": "^0.7.1",
     "graphql": "^14.1.1",
     "knex": "^0.14.2",
+    "lodash": "^4.17.11",
+    "node-fetch": "^2.3.0",
     "pg": "^7.4.0"
   },
   "devDependencies": {
